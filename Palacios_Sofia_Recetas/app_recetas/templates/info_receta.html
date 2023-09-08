@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/recetas.css')}}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
+        <title>Ver receta</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header-cont">
+                <h1>Bienvenid@ {{session['first_name']}} {{session['last_name']}}</h1>  
+                <div class="links-cont">
+                    <form action="/recetas" method="GET"><button action="submit" class="link-button">Volver a recetas</button></form>
+                    <form action="/logout" method="POST"><button action="submit" class="link-button">Logout</button></form>
+                </div>
+            </div>
+            <div class="body-cont">
+                <div class="sub-header-cont">
+                    <div><h1>{{receta.nombre}}</h1></div>
+                    <div><p>Publicado por: {{receta.usuario.first_name}}  {{receta.usuario.last_name}}</p></div>
+                </div>
+                <div class="receta-info-cont">
+                    <div class="info-lines">
+                        <h4>Descripcion:</h4> 
+                        <p>{{receta.descripcion}}</p>
+                    </div>
+                    <div class="info-lines">
+                        <h4>Cocinar en menos de 30 minutos?</h4> 
+                        <p>
+                            {%if receta.duration==1: %}
+                                Si
+                            {% else: %}
+                                No
+                            {%endif%}
+                        </p>
+                    </div>
+                    <div class="info-lines">
+                        <h4>Instrucciones: </h4> 
+                        <p>{{receta.instrucciones}}</p>
+                    </div>
+                    <div class="info-lines">
+                        <h4>Fecha de elaboración: </h4>
+                        <p>{{receta.fecha_elaboracion.strftime('%d de %B de %Y')}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

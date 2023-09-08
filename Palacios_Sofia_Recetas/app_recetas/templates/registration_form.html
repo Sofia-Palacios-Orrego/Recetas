@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
+        <title>Registro y Login</title>
+    </head>
+    <body>
+        <div class="title-cont">
+            <h1>Recipe Share</h1>
+        </div>
+        <div class="container">
+            <div class="left-container">
+                <form class="theform" method="POST" action="/nuevo/usuario">
+                <h1 class="title-1"><label> Registrarse</label></h1>
+                <div class="input-con">
+                    <div class="entradas">
+                        <label>Nombre: </label>
+                        <input for="first_name" type="text" name="first_name">
+                    </div>
+                        {% for mensaje in get_flashed_messages(category_filter=['error_nombre']) %}
+                        <p>{{ mensaje }}</p>
+                        {% endfor %}
+                    <div class="entradas">
+                        <label>Apellido:</label>
+                        <input for="last_name" type="text" name="last_name">
+                    </div>
+                        {% for mensaje in get_flashed_messages(category_filter=['error_apellido']) %}
+                        <p>{{ mensaje }}</p>
+                        {% endfor %}
+                        
+                    <div class="entradas">
+                        <label>Email:</label>
+                        <input for="email" type="text" name="email">
+                    </div>
+                        {% for mensaje in get_flashed_messages(category_filter=['error_email']) %}
+                        <p>{{ mensaje }}</p>
+                        {% endfor %}
+                    <div class="entradas">
+                        <label>Contraseña:</label>
+                        <input for="password" type="password" name="password">
+                    </div>
+                        {% for mensaje in get_flashed_messages(category_filter=['error_password']) %}
+                        <p>{{ mensaje }}</p>
+                        {% endfor %}
+                    <div class="entradas">
+                        <label>Confirmación contraseña:</label>
+                        <input for="confirmar_password" type="password" name="confirmar_password">
+                    </div>
+                    <button class="btn-1" type="submit">Enviar</button>
+                </div>
+                </form>
+            </div>
+            <div class="right-container">
+                <form class="theform" method="POST" action="/login">
+                    <h1 class="title-2"><label> Login</label></h1>
+                    <div class="input-con">
+                        <div>
+                            <label>Email:</label>
+                            <input for="email_login" type="text" name="email_login">
+                        </div>
+                            {% for mensaje in get_flashed_messages(category_filter=['error_email_login']) %}
+                            <p>{{ mensaje }}</p>
+                            {% endfor %}
+                        <div>
+                            <label>Contraseña:</label>
+                            <input for="password_login" type="password" name="password_login">
+                        </div>
+                            {% for mensaje in get_flashed_messages(category_filter=['error_password_login']) %}
+                            <p>{{ mensaje }}</p>
+                            {% endfor %}
+                        <button class="btn-2" type="submit">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

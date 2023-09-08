@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/recetas.css')}}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
+        <title>Editar una receta</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header-cont">
+                <h1>Editar receta</h1>  
+                <div class="links-cont">
+                    <form action="/recetas" method="GET"><button action="submit" class="link-button">Volver a recetas</button></form>
+                    <form action="/logout" method="POST"><button action="submit" class="link-button">Logout</button></form>
+                </div>
+            </div>
+            <div id="form-cont">
+                <form class="theform" method="POST" action="/editar/receta/{{receta.id}}">
+                <div class="text-area-cont">
+                    <label for="nombre">Nombre  </label>
+                    <input type="text" id="nombre" name="nombre" value="{{receta.nombre}}">
+                </div>
+                    {% for mensaje in get_flashed_messages(category_filter=['error_nombre']) %}
+                        <p class="error-message">{{ mensaje }}</p>
+                    {% endfor %}
+                <div class="text-area-cont">
+                    <label for="descripcion">Descripcion  <textarea id="descripcion" name="descripcion" rows="5" cols="33" style="vertical-align: top">{{receta.descripcion}}</textarea></label>
+                </div>
+                    {% for mensaje in get_flashed_messages(category_filter=['error_descripcion']) %}
+                        <p class="error-message">{{ mensaje }}</p>
+                    {% endfor %}
+                <div class="text-area-cont">
+                    <label for="instrucciones">Instrucciones  <textarea id="instrucciones" name="instrucciones" rows="5" cols="33" style="vertical-align: top">{{receta.instrucciones}}</textarea></label>
+                </div>
+                    {% for mensaje in get_flashed_messages(category_filter=['error_instrucciones']) %}
+                        <p class="error-message">{{ mensaje }}</p>
+                    {% endfor %}
+                <div id="elaboracion">
+                    <label for="fecha_elaboracion">Dia de elaboración </label>
+                    <input type="date" id="fecha_elaboracion" name="fecha_elaboracion" value="{{receta.fecha_elaboracion}}">
+                </div>
+                    {% for mensaje in get_flashed_messages(category_filter=['error_fecha_elaboracion']) %}
+                        <p class="error-message">{{ mensaje }}</p>
+                    {% endfor %}
+                <div id="duration">
+                    <p>Tomo menos de 30 min?</p>
+                    <label for="duration_si">Si</label>
+                    <input {%if receta.duration == 1: %} checked {% endif %} type="radio" value="1" id="duration_si" name="duration">
+                    <label for="duration_no">No</label>
+                    <input {%if receta.duration == 0: %} checked {% endif %} type="radio" value="0" id="duration_no" name="duration">
+                </div>
+                    {% for mensaje in get_flashed_messages(category_filter=['error_duration']) %}
+                        <p class="error-message">{{ mensaje }}</p>
+                    {% endfor %}
+                <button class="btn-receta" type="submit">Editar</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
+    

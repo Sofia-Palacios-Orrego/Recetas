@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/recetas.css')}}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
+        <title>Todas las recetas</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="title-cont">
+                <h1>Bienvenid@ {{session['first_name']}}  {{session['last_name']}}</h1>
+            </div>
+            <div class="sub-title-cont">
+                <h4>Todas las recetas ingresadas:</h4>  
+                <div class="links-cont">
+                    <form action="/formulario/receta" method="GET"><button action="submit" class="link-button">Crear</button></form>
+                    <form action="/logout" method="POST"><button action="submit" class="link-button">Logout</button></form>
+                </div>
+            </div>
+            <div class="table-cont">
+                <table>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Menos de 30 min</th>
+                        <th>Publicado por</th>
+                        <th>Acciones</th>
+                    </tr>
+                    {% for receta in lista_recetas %}
+                    <tr>
+                        <td>{{ receta.nombre }}</td>
+                        <td>
+                            {%if receta.duration==1: %}
+                                Si
+                            {% else: %}
+                                No
+                            {%endif%}
+                        </td>
+                        <td>{{ receta.usuario.first_name }} {{ receta.usuario.last_name }}</td>
+                        <td class="table-links-cont">
+                            <form class="form-links" action="/receta/{{receta.id}}" method="GET">
+                                <button type="submit" class="link-button">
+                                    Ver receta
+                                </button>
+                            </form>
+                            {% if receta.id_usuario == session['id_usuario'] %}
+                            <form class="form-links" action="/formulario/editar/receta/{{receta.id}}" method="GET" >
+                                <button type="submit" class="link-button">
+                                    Editar
+                                </button>
+                            </form>
+                            <form class="form-links" action="eliminar/receta/{{receta.id}}" method="POST">
+                                <button type="submit" class="link-button">
+                                    Eliminar
+                                </button>
+                            </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
+    

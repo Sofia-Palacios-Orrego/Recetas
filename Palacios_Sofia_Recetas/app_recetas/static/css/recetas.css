@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.btn-receta {
+    font-family: 'Balsamiq Sans', cursive;
+    background-color: lightcoral;
+    border: 2px;
+    border-radius: 2px;
+    padding: 10px;
+    width: 100px;
+    box-shadow: 3px 5px;
+}
+
+.container {
+    width: auto;
+    height: auto;
+    padding: 30px 60px;
+    font-family: 'Balsamiq Sans', cursive;
+}
+
+h1 {
+    padding: 0;
+}
+
+.sub-title-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.header-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.links-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 200px;
+}
+
+.sub-header-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 0%;
+    margin: 0px 20px;
+}
+
+.receta-info-cont {
+    border: 2px solid black;
+    margin: 0px 20px;
+    padding: 20px 100px 20px 20px;
+    display: grid;
+    grid-gap: 30px;
+}
+
+.info-lines {
+    display: flex;
+    flex-direction: row;
+}
+
+h4 {
+    width: 400px;
+}
+
+.link-button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+
+.link-button:focus {
+    outline: none;
+}
+
+#elaboracion,
+#duration,
+.text-area-cont {
+    margin-bottom: 20px;
+    vertical-align: top;
+
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+.table-links-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+
+
+.error-message {
+
+    color: red;
+    padding: 0%;
+}
